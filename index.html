@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Apsara 💙🌷</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #60a5fa;
+            --primary-dark: #3b82f6;
+            --secondary: #f472b6;
+            --background: #f8fafc;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --font-display: 'Dancing Script', cursive;
+            --font-sans: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Background Decorations */
+        .bg-decorations {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .tulip {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.15;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        /* Floating Hearts Container */
+        #hearts-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: heart-fly 3s ease-out forwards;
+        }
+
+        @keyframes heart-fly {
+            0% { transform: translate(0, 0) scale(0); opacity: 1; }
+            100% { transform: translate(var(--tx), var(--ty)) scale(1.5); opacity: 0; }
+        }
+
+        /* Layout */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        section {
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero {
+            text-align: center;
+            padding-top: 4rem;
+        }
+
+        .hero-emojis {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+
+        .bounce {
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .sparkle {
+            position: absolute;
+            font-size: 1.2rem;
+            animation: sparkle 3s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+        }
+
+        .typewriter {
+            font-style: italic;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            min-height: 1.5em;
+        }
+
+        .divider {
+            text-align: center;
+            font-size: 1.5rem;
+            letter-spacing: 0.5rem;
+            margin: 2rem 0;
+            color: var(--secondary);
+            opacity: 0.6;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .message-content {
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .message-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight {
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .reason-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 1rem;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+
+        .reason-emoji {
+            font-size: 2rem;
+        }
+
+        .promise-card {
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.1), rgba(244, 114, 182, 0.1));
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            text-align: center;
+        }
+
+        .forgive-container {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .btn-forgive {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-forgive:hover {
+            transform: scale(1.05);
+            background: var(--primary-dark);
+            box-shadow: 0 15px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-forgive:active {
+            transform: scale(0.95);
+        }
+
+        .btn-hint {
+            display: block;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-style: italic;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            animation: scale-up 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes scale-up {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .success-emoji {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .success-title {
+            font-size: 2rem;
+            color: var(--primary-dark);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 0 2rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        footer span {
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        /* Utilities */
+        .text-center { text-align: center; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .font-display { font-family: var(--font-display); }
+
+    </style>
+</head>
+<body>
+
+    <div class="bg-decorations" id="bg-decorations">
+        <!-- Tulips generated by JS -->
+    </div>
+
+    <div id="hearts-container"></div>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero visible">
+            <div class="hero-emojis">
+                <span class="bounce" style="animation-delay: 0s">🌷</span>
+                <span class="bounce" style="animation-delay: 0.3s">💙</span>
+                <span class="bounce" style="animation-delay: 0.6s">🌷</span>
+            </div>
+            <h1 class="font-display">
+                <span class="sparkle" style="top: -10px; left: -30px;">✨</span>
+                <span class="sparkle" style="top: 0px; right: -30px; animation-delay: 1.5s;">✨</span>
+                Hey Apsara ❤️
+            </h1>
+            <p class="typewriter" id="typewriter"></p>
+        </section>
+
+        <div class="divider">🌷 · 🌷 · 🌷</div>
+
+        <!-- Main Message -->
+        <section>
+            <h2 class="text-center mb-8 font-display" style="font-size: 2rem; color: var(--primary-dark);">🌸 Apsara, I just want you to know something…</h2>
+            <div class="card message-content">
+                <p>I'm sorry if I made you feel ignored.</p>
+                <p><strong>That was never my intention.</strong></p>
+                <p>Sometimes I reply late because I'm thinking, not because I don't care.</p>
+                <p>The truth is… <span class="highlight">I care about you a lot. 💙</span></p>
+                <p>And I honestly don't like it when you're upset.</p>
+            </div>
+        </section>
+
+        <!-- Highlight Card -->
+        <section>
+            <div class="card" style="background: rgba(244, 114, 182, 0.05); text-align: center; border-color: rgba(244, 114, 182, 0.2);">
+                <p style="font-style: italic; font-size: 1.2rem;">
+                    💌 You're special to me. <br>
+                    <span class="highlight" style="color: var(--secondary);">More than you probably realize.</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- Reasons Section -->
+        <section>
+            <h2 class="text-center mb-8 font-display" style="font-size: 2rem; color: var(--primary-dark);">✨ 3 reasons why I like you</h2>
+            <div class="reason-item">
+                <span class="reason-emoji bounce">😊</span>
+                <p>Your smile makes everything better.</p>
+            </div>
+            <div class="reason-item">
+                <span class="reason-emoji bounce" style="animation-delay: 0.5s">🥺</span>
+                <p>The way you act cute even when you're mad 😭</p>
+            </div>
+            <div class="reason-item">
+                <span class="reason-emoji bounce" style="animation-delay: 1s">☮️</span>
+                <p>You bring peace to me, even when we fight.</p>
+            </div>
+        </section>
+
+        <!-- Promise Section -->
+        <section>
+            <h2 class="text-center mb-8 font-display" style="font-size: 2rem; color: var(--primary-dark);">🫶 A small promise</h2>
+            <div class="card promise-card">
+                <div style="font-size: 2rem; margin-bottom: 1rem;">🤙</div>
+                <p class="mb-4">From now on, if I'm busy or slow to reply, I'll tell you.</p>
+                <p class="mb-4">Because I don't want you to ever feel unwanted or ignored.</p>
+                <p class="highlight" style="font-size: 1.3rem;">You matter to me, Apsara. 💙</p>
+            </div>
+        </section>
+
+        <!-- Closing Section -->
+        <section class="text-center">
+            <h2 class="font-display mb-8" style="font-size: 2.5rem; color: var(--primary-dark);">
+                Apsara… can we be okay now? 🥺
+            </h2>
+            <div class="mb-8" style="color: var(--text-light);">
+                <p>I don't want to fight with you.</p>
+                <p>I want to make you smile, not stress you.</p>
+                <p class="highlight" style="font-size: 1.3rem; margin-top: 1rem;">I miss you. 💙</p>
+            </div>
+        </section>
+
+        <!-- Forgive Button -->
+        <section class="forgive-container">
+            <div id="forgive-action">
+                <button class="btn-forgive" id="btn-forgive">
+                    Click if you forgive me 🥺❤️
+                </button>
+                <span class="btn-hint">go on… tap it 👉👈</span>
+            </div>
+
+            <div class="success-message" id="success-message">
+                <span class="success-emoji bounce">💙🌷</span>
+                <h3 class="success-title">Thank you, Apsara 🥹</h3>
+                <p style="color: var(--text-light); font-size: 1.1rem;">You just made me the happiest person ever 💕</p>
+                <div style="margin-top: 1.5rem; font-size: 2rem; display: flex; justify-content: center; gap: 0.5rem;">
+                    <span>🌷</span><span>💙</span><span>🦋</span><span>✨</span><span>💕</span>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Made with love by <span>Josekutty</span> ❤️</p>
+            <div style="font-size: 1.5rem; margin-top: 0.5rem;">🌷</div>
+        </footer>
+    </div>
+
+    <script>
+        // Typewriter Effect
+        const text = "I made this little page just for you.";
+        const typewriterElement = document.getElementById('typewriter');
+        let i = 0;
+
+        function type() {
+            if (i < text.length) {
+                typewriterElement.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, 50);
+            }
+        }
+
+        setTimeout(type, 1000);
+
+        // Scroll Reveal
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Background Decorations
+        const bg = document.getElementById('bg-decorations');
+        const positions = [
+            { top: "10%", left: "5%", delay: 0 },
+            { top: "25%", right: "8%", delay: 1.5 },
+            { top: "50%", left: "3%", delay: 0.8 },
+            { top: "70%", right: "5%", delay: 2 },
+            { top: "85%", left: "10%", delay: 1.2 },
+        ];
+
+        positions.forEach((pos, i) => {
+            const tulip = document.createElement('div');
+            tulip.className = 'tulip';
+            tulip.innerHTML = '🌷';
+            tulip.style.top = pos.top;
+            if (pos.left) tulip.style.left = pos.left;
+            if (pos.right) tulip.style.right = pos.right;
+            tulip.style.animationDelay = `${pos.delay}s`;
+            bg.appendChild(tulip);
+        });
+
+        // Forgive Action
+        const btnForgive = document.getElementById('btn-forgive');
+        const forgiveAction = document.getElementById('forgive-action');
+        const successMessage = document.getElementById('success-message');
+        const heartsContainer = document.getElementById('hearts-container');
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = ['💙', '❤️', '🌷', '✨'][Math.floor(Math.random() * 4)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = Math.random() * 100 + 'vh';
+            
+            const tx = (Math.random() - 0.5) * 400;
+            const ty = (Math.random() - 0.5) * 400;
+            heart.style.setProperty('--tx', `${tx}px`);
+            heart.style.setProperty('--ty', `${ty}px`);
+            
+            heartsContainer.appendChild(heart);
+            setTimeout(() => heart.remove(), 3000);
+        }
+
+        btnForgive.addEventListener('click', () => {
+            // Explode hearts
+            for (let i = 0; i < 30; i++) {
+                setTimeout(createHeart, i * 20);
+            }
+
+            // Switch content
+            forgiveAction.style.display = 'none';
+            successMessage.style.display = 'block';
+
+            // Continuous hearts for a bit
+            const interval = setInterval(createHeart, 300);
+            setTimeout(() => clearInterval(interval), 5000);
+        });
+    </script>
+</body>
+</html>
