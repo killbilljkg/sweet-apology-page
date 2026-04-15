@@ -333,38 +333,7 @@ function LovePage() {
         </Section>
 
         {/* Photos */}
-        <Section delay={0.1}>
-          <h2
-            className="text-2xl font-semibold text-primary mb-8 text-center"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            📸 Our little moments
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.8, rotate: (i % 2 === 0 ? -5 : 5) }}
-                whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, type: "spring", bounce: 0.4 }}
-                whileHover={{ scale: 1.08, rotate: i % 2 === 0 ? 2 : -2, zIndex: 10 }}
-                className="aspect-square rounded-xl bg-accent/50 border-2 border-dashed border-primary/20 flex items-center justify-center text-4xl cursor-default"
-              >
-                <motion.span
-                  animate={{ y: [0, -5, 0] }}
-                  transition={{ repeat: Infinity, duration: 2 + i * 0.3, ease: "easeInOut" }}
-                >
-                  {["🌷", "💙", "📷", "✨", "🦋", "🌸"][i]}
-                </motion.span>
-              </motion.div>
-            ))}
-          </div>
-          <p className="text-center text-muted-foreground text-sm mt-4 italic">
-            Upload your photos here to fill these spots 💕
-          </p>
-        </Section>
-
+       
         {/* Ending */}
         <Section delay={0.1} className="text-center">
           <motion.h2
