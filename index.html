@@ -384,10 +384,24 @@
         <!-- Forgive Button -->
         <section class="forgive-container">
             <div id="forgive-action">
+                <div class="card mb-8" style="background: white; border: 1px solid rgba(59, 130, 246, 0.1); text-align: left;">
+                    <label for="message" style="display: block; margin-bottom: 0.8rem; color: var(--text-light); font-size: 0.9rem; font-style: italic;">
+                        Anything you want to say to me? (optional) ✍️
+                    </label>
+                    <textarea 
+                        id="message" 
+                        name="message"
+                        placeholder="Type your thoughts here..." 
+                        style="width: 100%; min-height: 120px; padding: 1rem; border-radius: 1rem; border: 1px solid rgba(0,0,0,0.05); background: var(--background); font-family: inherit; font-size: 1rem; resize: vertical; outline: none; transition: border-color 0.3s;"
+                        onfocus="this.style.borderColor='var(--primary)'"
+                        onblur="this.style.borderColor='rgba(0,0,0,0.05)'"
+                    ></textarea>
+                </div>
+
                 <button class="btn-forgive" id="btn-forgive">
-                    Click if you forgive me 🥺❤️
+                    Click to Forgive & Send 🥺❤️
                 </button>
-                <span class="btn-hint">go on… tap it 👉👈</span>
+                <span class="btn-hint">I'm waiting for you… 👉👈</span>
             </div>
 
             <div class="success-message" id="success-message">
@@ -465,6 +479,7 @@
         const forgiveAction = document.getElementById('forgive-action');
         const successMessage = document.getElementById('success-message');
         const heartsContainer = document.getElementById('hearts-container');
+        const messageInput = document.getElementById('message');
 
         function createHeart() {
             const heart = document.createElement('div');
@@ -482,15 +497,34 @@
             setTimeout(() => heart.remove(), 3000);
         }
 
-        btnForgive.addEventListener('click', () => {
-            // Explode hearts
+        btnForgive.addEventListener('click', async () => {
+            const message = messageInput.value;
+            
+            // Start heart explosion immediately
             for (let i = 0; i < 30; i++) {
                 setTimeout(createHeart, i * 20);
             }
 
-            // Switch content
+            // Show success message immediately for better UX
             forgiveAction.style.display = 'none';
             successMessage.style.display = 'block';
+
+            // Send to Formspree in the background
+            try {
+                await fetch("https://formspree.io/f/xpqkwgee", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify({
+                        message: message || "Apsara clicked Forgive (no text message)",
+                        timestamp: new Date().toLocaleString()
+                    })
+                });
+            } catch (error) {
+                console.error("Error sending response:", error);
+            }
 
             // Continuous hearts for a bit
             const interval = setInterval(createHeart, 300);
